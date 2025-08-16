@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WatchSync Test Video Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .video-container {
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+        }
+        
+        .controls {
+            background: #333;
+            padding: 15px;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .status-panel {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .status-item {
+            margin: 5px 0;
+            padding: 5px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+        
+        .event-log {
+            background: #2d2d2d;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .test-instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #1976d2;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎬 WatchSync Test Video Player</h1>
+    
+    <div class="test-instructions">
+        <h3>🧪 Testing Instructions:</h3>
+        <ol>
+            <li>Open this page in <span class="highlight">two different browser windows</span></li>
+            <li>Load the WatchSync extension in both windows</li>
+            <li>Join the same room in both windows</li>
+            <li>Try playing/pausing/seeking in one window and watch the other sync!</li>
+        </ol>
+    </div>
+    
+    <div class="video-container">
+        <video id="test-video" controls>
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <button onclick="testPlay()">Test Play</button>
+            <button onclick="testPause()">Test Pause</button>
+            <button onclick="testSeek()">Test Seek (30s)</button>
+            <button onclick="clearLog()">Clear Log</button>
+        </div>
+    </div>
+    
+    <div class="status-panel">
+        <h3>📊 Video Status</h3>
+        <div class="status-item">
+            <strong>Current Time:</strong> <span id="current-time">0:00</span>
+        </div>
+        <div class="status-item">
+            <strong>Duration:</strong> <span id="duration">0:00</span>
+        </div>
+        <div class="status-item">
+            <strong>Playing:</strong> <span id="playing-status">No</span>
+        </div>
+        <div class="status-item">
+            <strong>Volume:</strong> <span id="volume">100%</span>
+        </div>
+    </div>
+    
+    <div class="event-log">
+        <h3>📝 Event Log</h3>
+        <div id="log-content">Waiting for events...</div>
+    </div>
+    
+    <script>
+        const video = document.getElementById('test-video');
+        const logContent = document.getElementById('log-content');
+        
+        // Update status elements
+        const currentTimeSpan = document.getElementById('current-time');
+        const durationSpan = document.getElementById('duration');
+        const playingStatusSpan = document.getElementById('playing-status');
+        const volumeSpan = document.getElementById('volume');
+        
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        function updateStatus() {
+            currentTimeSpan.textContent = formatTime(video.currentTime);
+            durationSpan.textContent = formatTime(video.duration);
+            playingStatusSpan.textContent = !video.paused ? 'Yes' : 'No';
+            volumeSpan.textContent = Math.round(video.volume * 100) + '%';
+        }
+        
+        function logEvent(event) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${event}\n`;
+            logContent.textContent += logEntry;
+            logContent.scrollTop = logContent.scrollHeight;
+        }
+        
+        // Video event listeners
+        video.addEventListener('loadstart', () => logEvent('Video loading started'));
+        video.addEventListener('loadeddata', () => {
+            logEvent('Video data loaded');
+            updateStatus();
+        });
+        video.addEventListener('play', () => {
+            logEvent('▶️ PLAY event triggered');
+            updateStatus();
+        });
+        video.addEventListener('pause', () => {
+            logEvent('⏸️ PAUSE event triggered');
+            updateStatus();
+        });
+        video.addEventListener('seeking', () => {
+            logEvent('🔍 SEEKING event triggered');
+        });
+        video.addEventListener('seeked', () => {
+            logEvent('✅ SEEKED event triggered');
+            updateStatus();
+        });
+        video.addEventListener('timeupdate', () => {
+            updateStatus();
+        });
+        video.addEventListener('volumechange', () => {
+            logEvent('🔊 Volume changed');
+            updateStatus();
+        });
+        
+        // Test functions
+        function testPlay() {
+            logEvent('🧪 Manual test: Play button clicked');
+            video.play();
+        }
+        
+        function testPause() {
+            logEvent('🧪 Manual test: Pause button clicked');
+            video.pause();
+        }
+        
+        function testSeek() {
+            logEvent('🧪 Manual test: Seek to 30 seconds');
+            video.currentTime = 30;
+        }
+        
+        function clearLog() {
+            logContent.textContent = 'Log cleared...\n';
+        }
+        
+        // Update status every second
+        setInterval(updateStatus, 1000);
+        
+        // Initial log
+        logEvent('🎬 Test video player loaded');
+        logEvent('📱 Open this page in another window to test sync');
+    </script>
+</body>
+</html> 

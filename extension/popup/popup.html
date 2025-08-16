@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WatchSync</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🎬</span>
+                <span class="logo-text">WatchSync</span>
+            </div>
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span class="status-text" id="statusText">Detecting...</span>
+            </div>
+        </header>
+
+        <main class="main">
+            <!-- Video Detection Status -->
+            <section class="detection-status" id="detectionStatus">
+                <div class="detection-info">
+                    <span class="detection-icon" id="detectionIcon">🔍</span>
+                    <div class="detection-text">
+                        <div class="detection-title" id="detectionTitle">Looking for videos...</div>
+                        <div class="detection-subtitle" id="detectionSubtitle">Make sure you're on a video page</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Room Management -->
+            <section class="room-section" id="roomSection" style="display: none;">
+                <div class="room-controls">
+                    <button class="btn btn-primary" id="createRoomBtn">
+                        <span class="btn-icon">➕</span>
+                        Create Room
+                    </button>
+                    <div class="join-room">
+                        <input type="text" id="roomIdInput" placeholder="Enter room ID" class="room-input">
+                        <button class="btn btn-secondary" id="joinRoomBtn">
+                            <span class="btn-icon">🚪</span>
+                            Join
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Active Room -->
+            <section class="active-room" id="activeRoom" style="display: none;">
+                <div class="room-info">
+                    <div class="room-header">
+                        <span class="room-icon">🎯</span>
+                        <div class="room-details">
+                            <div class="room-title">Room Active</div>
+                            <div class="room-id" id="activeRoomId">room-123</div>
+                        </div>
+                        <button class="btn btn-small btn-danger" id="leaveRoomBtn">Leave</button>
+                    </div>
+                    <div class="participants">
+                        <div class="participants-count" id="participantsCount">1 participant</div>
+                        <div class="share-info">
+                            <div class="share-text">Share this room ID with friends:</div>
+                            <div class="share-controls">
+                                <code class="room-code" id="shareRoomId">room-123</code>
+                                <button class="btn btn-small" id="copyRoomBtn">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Debug Info (only in debug mode) -->
+            <section class="debug-section" id="debugSection" style="display: none;">
+                <details class="debug-details">
+                    <summary>Debug Info</summary>
+                    <div class="debug-content">
+                        <div class="debug-item">
+                            <span class="debug-label">Platform:</span>
+                            <span class="debug-value" id="debugPlatform">Unknown</span>
+                        </div>
+                        <div class="debug-item">
+                            <span class="debug-label">Videos Found:</span>
+                            <span class="debug-value" id="debugVideoCount">0</span>
+                        </div>
+                        <div class="debug-item">
+                            <span class="debug-label">User ID:</span>
+                            <span class="debug-value" id="debugUserId">-</span>
+                        </div>
+                                            <div class="debug-item">
+                        <span class="debug-label">Server:</span>
+                        <span class="debug-value" id="debugConnection">Disconnected</span>
+                    </div>
+                    <div class="debug-item">
+                        <span class="debug-label">Room Status:</span>
+                        <span class="debug-value" id="debugRoomStatus">Not in room</span>
+                    </div>
+                    </div>
+                </details>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <button class="link-btn" id="settingsBtn">Settings</button>
+                <button class="link-btn" id="helpBtn">Help</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 

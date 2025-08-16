@@ -1,0 +1,377 @@
+/* WatchSync Popup Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 400px;
+}
+
+.container {
+    width: 350px;
+    min-height: 400px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    font-size: 20px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffd700;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.connected {
+    background: #4CAF50;
+    animation: none;
+}
+
+.status-dot.disconnected {
+    background: #f44336;
+    animation: none;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Main Content */
+.main {
+    padding: 20px;
+}
+
+/* Detection Status */
+.detection-status {
+    margin-bottom: 20px;
+}
+
+.detection-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.detection-icon {
+    font-size: 24px;
+}
+
+.detection-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.detection-subtitle {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.btn-icon {
+    font-size: 12px;
+}
+
+/* Room Section */
+.room-section {
+    margin-bottom: 20px;
+}
+
+.room-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.join-room {
+    display: flex;
+    gap: 8px;
+}
+
+.room-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.room-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Active Room */
+.active-room {
+    margin-bottom: 20px;
+}
+
+.room-info {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 4px solid #28a745;
+}
+
+.room-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.room-icon {
+    font-size: 20px;
+}
+
+.room-details {
+    flex: 1;
+}
+
+.room-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.room-id {
+    font-size: 12px;
+    color: #666;
+    font-family: monospace;
+}
+
+.participants {
+    margin-top: 12px;
+}
+
+.participants-count {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.share-info {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+.share-text {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.share-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.room-code {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #e9ecef;
+}
+
+/* Debug Section */
+.debug-section {
+    margin-bottom: 20px;
+}
+
+.debug-details {
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.debug-details summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    background: #e9ecef;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.debug-content {
+    padding: 16px;
+}
+
+.debug-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 4px 0;
+}
+
+.debug-item:last-child {
+    margin-bottom: 0;
+}
+
+.debug-label {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.debug-value {
+    font-size: 12px;
+    color: #333;
+    font-family: monospace;
+}
+
+/* Footer */
+.footer {
+    background: #f8f9fa;
+    padding: 16px 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    color: #667eea;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.link-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+/* State-specific styles */
+.video-detected .detection-icon {
+    animation: bounce 1s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.no-video .detection-info {
+    border-left-color: #ffc107;
+}
+
+.error .detection-info {
+    border-left-color: #dc3545;
+}
+
+/* Responsive adjustments */
+@media (max-width: 360px) {
+    .container {
+        width: 320px;
+    }
+    
+    .join-room {
+        flex-direction: column;
+    }
+} 
