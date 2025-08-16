@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "WatchSync",
+  "version": "1.0.0",
+  "description": "Free Teleparty alternative - Sync video watching with friends",
+  "permissions": [
+    "activeTab",
+    "storage", 
+    "tabs",
+    "windows"
+  ],
+  "incognito": "split",
+  "background": {
+    "service_worker": "watchsync-background-pusher.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.netflix.com/*",
+        "https://www.youtube.com/*",
+        "https://www.hotstar.com/*",
+        "https://*.hotstar.com/*",
+        "http://localhost:*/*"
+      ],
+      "js": ["watchsync-content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "WatchSync"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["*.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
