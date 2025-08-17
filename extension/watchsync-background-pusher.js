@@ -10,7 +10,7 @@ class WatchSyncBackground {
     this.pusher = null;
     this.currentChannel = null;
     this.isConnecting = false;
-    this.apiUrl = 'https://watchsync-api.vercel.app/api'; // Will be updated after deployment
+    this.apiUrl = 'https://watchsync-2c2ff61f0-nikhil-pathiyils-projects.vercel.app/api';
     this.pusherConfig = {
       key: '3cfef5c6d50e16f168a1', // Public Pusher key (safe to commit)
       cluster: 'ap2', // Public cluster setting

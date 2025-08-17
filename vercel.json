@@ -1,16 +1,7 @@
 {
   "version": 2,
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "env": {
-    "PUSHER_APP_ID": "@pusher-app-id",
-    "PUSHER_KEY": "@pusher-key", 
-    "PUSHER_SECRET": "@pusher-secret",
-    "PUSHER_CLUSTER": "@pusher-cluster"
-  },
+
+
   "headers": [
     {
       "source": "/api/(.*)",
