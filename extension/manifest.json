@@ -11,7 +11,7 @@
   ],
   "incognito": "split",
   "background": {
-    "service_worker": "watchsync-background.js"
+    "service_worker": "watchsync-background-pusher.js"
   },
   "content_scripts": [
     {
